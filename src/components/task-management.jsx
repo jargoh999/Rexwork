@@ -117,13 +117,13 @@ const TaskManagement = () => {
     (<div className="p-6">
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-2xl font-bold">Tasks</h1>
-          <div className="flex items-center space-x-2">
-            <h2 className="text-lg text-muted-foreground">All tasks</h2>
-            <Badge variant="outline" className="text-xs">
+          <h1 className="text-2xl font-bold text-[#e6ae9e]">Tasks</h1>
+          {/* <div className="flex items-center space-x-2">
+            <h2 className="text-lg text-muted-foreground">All tasks</h2> */}
+            {/* <Badge variant="outline" className="text-xs">
               Taskiro project quests
-            </Badge>
-          </div>
+            </Badge> */}
+          {/* </div> */}
         </div>
       </div>
       <Card className="mb-6">

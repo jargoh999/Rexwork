@@ -15,7 +15,6 @@ import {
   FileText,
   CheckSquare,
   Users,
-  ChevronDown,
   Star,
   MoreHorizontal,
   ArrowUpRight,
@@ -24,6 +23,9 @@ import {
   Settings,
   Plus,
   MoreHorizontalIcon,
+  Contact,
+  Edit2Icon,
+  EditIcon,
   
 } from 'lucide-react'
 import { ProjectsComponent } from './projects';
@@ -45,48 +47,65 @@ import {
 } from "@/components/ui/resizable"
 import Component from './ui/chartComponent';
 import MessagingPopup from './messaging-popup';
-
+import ContactsPage from './contacts-page';
+import SettingsDialog from './settings-dialog';
+import { useNavigate } from 'react-router-dom';
+import ProfilePage from './profile-page';
 
 let Sidebar = ({ activePage, setActivePage }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+     setActivePage("profilePage")
+  };
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
   return( 
     <ScrollArea>
-  <div className="w-25 bg-white border-r p-4 flex flex-col h-120">
+  <div className="w-[350px] bg-white border-r p-4 flex flex-col h-120">
     <div className="flex items-center mb-8">
       <div className="w-8 h-8 bg-purple-600 rounded-sm mr-2">
          <img src={imageToUse}></img>
       </div>
       <h1 className="text-xl font-bold">Rexwork's</h1>
     </div>
-    <div className="bg-gray-100 rounded-lg p-4 mb-6">
-      <Avatar className="w-16 h-16 mb-2">
-        <AvatarImage src="/placeholder.svg?height=64&width=64" alt="Théo G." />
+    <div className="rounded-lg p-4 mb-6 border-[3px] border-dashed border-gray-500">
+    <Button className="ml-[250px] h-[20px] mb-[20px] " size="icon" 
+              onClick={handleClick}
+    >
+         <EditIcon className='h-4 w-3'/>
+    </Button>
+      <Avatar className="w-16 h-16 mb-4">
+        <AvatarImage src="/placeholder.svg?heigt=64&width=64" alt="Théo G." />
         <AvatarFallback>TG</AvatarFallback>
       </Avatar>
-      <h2 className="font-semibold">Théo G.</h2>
-      <p className="text-sm text-gray-600">Fullstack developer</p>
-      <div className="mt-2 bg-gray-200 rounded-full px-2 py-1 text-xs flex items-center">
+      {/* url('@/assets/cubes.png') */}
+      <h2 className="font-semibold border-dashed border-[3px] border-[#E6AE9E] pl-1">Théo G.</h2>
+      <p className="font-semibold text-[#E6AE9E] mt-2 ">Fullstack developer</p>
+      {/* border-dashed border-[5px] border-gray-700 */}
+      <div className="mt-2 border-[3px] border-dashed border-green-200 px-2 py-1 text-sm flex items-center">
         <span className="font-semibold mr-1">856</span>
         <span className="text-gray-600">/ 1200 xp</span>
       </div>
     </div>
+    
     <nav className="space-y-2 flex-grow">
     <Button 
           variant={activePage === 'dashboard' ? "default" : "ghost"} 
           className="w-full justify-start"
           onClick={() => setActivePage('dashboard')}
         >      
-        <LayoutDashboard className="mr-2 h-4 w-4" />
+        <LayoutDashboard className="mr-2 h-4 w-4"/>
         Home
       </Button>
       <Button 
+          
           variant={activePage === 'projects' ? "default" : "ghost"} 
-          className="w-full justify-start"
+          className="w-full justify-start "
           onClick={() => setActivePage('projects')}
         >       
          <FileText className="mr-2 h-4 w-4" />
         Projects
       </Button>
+      
       <Button 
           variant={activePage === 'tasks' ? "default" : "ghost"} 
           className="w-full justify-start"
@@ -95,7 +114,10 @@ let Sidebar = ({ activePage, setActivePage }) => {
         <CheckSquare className="mr-2 h-4 w-4" />
         Tasks
       </Button>
-      <Button variant="ghost" className="w-full justify-start">
+      <Button  className="w-full justify-start"
+      variant={activePage === 'contacts' ? "default" : "ghost"} 
+      onClick={() => setActivePage('contacts')}
+      >
         <Users className="mr-2 h-4 w-4" />
         Contacts
       </Button>
@@ -123,7 +145,7 @@ let Sidebar = ({ activePage, setActivePage }) => {
       </AccordionItem>
     </Accordion>
     <Button 
-        className="mt-4" 
+        className="mt-4 border-[3px] border-dashed rounded-lg border-green-200" 
         variant="outline"
         onClick={() => setIsCreateModalOpen(true)}
       >
@@ -134,8 +156,7 @@ let Sidebar = ({ activePage, setActivePage }) => {
         isOpen={isCreateModalOpen} 
         onClose={() => setIsCreateModalOpen(false)} 
       />
-
-  </div>
+  </div>    
   </ScrollArea>
   )
 }
@@ -216,7 +237,7 @@ const ProjectCard = ({
           <span>Completion</span>
           <span>{completion}%</span>
         </div>
-        <Progress value={completion} />
+        <Progress value={completion}  />
       </div>
       <div className="mt-4 flex justify-between items-center">
         <Avatar className="h-6 w-6">
@@ -260,6 +281,10 @@ const WeeklyCalendar = () => (
               <p className="font-medium">Production deployment</p>
               <p className="text-sm text-muted-foreground">From Jan 8 - Jan 13</p>
             </div>
+            <div className="bg-green-200 p-2 rounded">
+              <p className="font-medium">code deployment</p>
+              <p className="text-sm text-muted-foreground">From Jan 8 - Jan 13</p>
+            </div>
           </div>
         </TabsContent>
       </Tabs>
@@ -272,8 +297,7 @@ const DashboardComponent = () => {
   const [popupVisible, setPopupVisible] = useState(false);
   const bellButton = <Button variant="ghost" size="icon"><Bell className="h-5 w-5" /></Button>
   const messagingButton=<Button variant="ghost" size="icon"><MessageSquare className="h-5 w-5" /></Button>
-
-
+  const settingsButton =  <Button variant="ghost" size="icon"><Settings className="h-5 w-5" /></Button>
   return (
     (
       <div className="flex h-screen bg-gray-100">
@@ -281,7 +305,7 @@ const DashboardComponent = () => {
       <div className="flex-1 flex flex-col overflow-hidden">
         <main className="flex-1 overflow-x-hidden overflow-y-auto p-6 bg-gray-100">
           { activePage==='dashboard' &&(
-          <><h2 className="text-2xl font-bold mb-6">Dashboard</h2><div className="grid grid-cols-3 gap-6 mb-6">
+          <><h2 className="text-2xl font-bold mb-6 text-[#e6ae9e]">Dashboard</h2><div className="grid grid-cols-3 gap-6 mb-6">
               <Stats />
               <ActivityFeed />
               <Card>
@@ -319,6 +343,12 @@ const DashboardComponent = () => {
           && <ProjectsComponent />}
           {activePage === 'tasks'
           && <TaskManagement />}
+          {activePage === "contacts"
+          && <ContactsPage/>}
+          {activePage === "profilePage"
+           && <ProfilePage/>
+          }
+      
           </main>
          
 
@@ -326,16 +356,14 @@ const DashboardComponent = () => {
       <div className="absolute top-4 right-4">
         <Button onClick={
           () => setPopupVisible(!popupVisible)
-          } className="mr-10" variant="ghost"><MoreHorizontalIcon/></Button>
+          } className="mr-10 border-2 border-dashed rounded-lg border-[#e6ae9e]" variant="ghost"><MoreHorizontalIcon/></Button>
       </div>
       {popupVisible && (
         <div className="absolute top-16 right-4 bg-grey shadow-lg rounded-lg p-4 w-54 z-50 mr-4">
           <div className="flex items-center space-x-4">
             <ActivityFeedPopup triggerButton={bellButton}/>
             <MessagingPopup triggerButton={messagingButton}/>
-            <Button variant="ghost" size="icon">
-              <Settings className="h-5 w-5" />
-            </Button>
+            <SettingsDialog trigger={settingsButton}/>
           </div>
         </div>
       )}

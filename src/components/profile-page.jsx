@@ -4,23 +4,26 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Bell, MessageSquare, Search, Settings, Edit, Share2, Trophy, Target, Calendar } from 'lucide-react'
+import { Bell, MessageSquare, Search, Settings, Edit, Share2, Trophy, Target, Calendar, Plus, PlusIcon, PlusCircleIcon } from 'lucide-react'
+import profilePage from "@/assets/profilePage.png"
+import creditIcon from "@/assets/Group 73.png"
+import LevelIndicator from './level-indicator'
 
 const ProfilePage = () => {
   return (
     (<div className="bg-gray-100 min-h-screen">
       <div className="max-w-5xl mx-auto p-4">
-        <h1 className="text-3xl font-bold mb-4">Profile</h1>
-        <Card className="mb-8">
-          <CardContent className="p-0">
-            <div className="relative">
-              <img
-                src="/placeholder.svg?height=200&width=1000&text=Banner+Image"
+        <h1 className="text-3xl font-bold mb-4 text-[#E6AE9E]">Profile</h1>
+      <Card className="mb-8 bg-[#413E54]">
+        <CardContent className="p-0">
+          <div className="relative-1">
+            <img
+                src={profilePage}
                 alt="Profile Banner"
-                className="w-full h-48 object-cover rounded-t-lg" />
-              <Button size="icon" className="absolute top-2 right-2 bg-white/80 hover:bg-white">
-                <Edit className="h-4 w-4" />
-              </Button>
+                className="w-full h-full object-cover rounded-t-lg"/>
+              {/* <Button size="icon" className="absolute-1 top-right-2 bg-[#413E54] hover:bg-[#413E54] text-white" variant="outline">
+                <Edit className="h-4 w-4"/>
+              </Button> */}
             </div>
             <div className="px-6 pb-6">
               <div className="flex items-end -mt-12 mb-4">
@@ -28,50 +31,18 @@ const ProfilePage = () => {
                   <AvatarImage src="/placeholder.svg?height=96&width=96&text=TG" alt="Théo G." />
                   <AvatarFallback>TG</AvatarFallback>
                 </Avatar>
-                <div className="ml-4 mb-2">
-                  <h2 className="text-2xl font-bold">Théo G.</h2>
-                  <p className="text-gray-600">Fullstack Developer</p>
+                <div className="flex w-23 ml-17">
+                  <img src={creditIcon} className='h-19 w-19'/>
+                  <Button className={"hover:bg-[#413E54] hover:text-grey bg-[#413E54] text-gray-200 mt-5 "} variant="outline" >625</Button>
+                  <Button className={"hover:bg-[#413E54] hover:text-grey bg-[#413E54] text-gray-200 h-5 w-5 mt-7 ml-3"} variant="outline" ><strong>+</strong></Button>
                 </div>
-                <div className="ml-auto flex space-x-2">
-                  <Button variant="outline">
-                    <Share2 className="h-4 w-4 mr-2" />
-                    Share
-                  </Button>
-                  <Button>
-                    <MessageSquare className="h-4 w-4 mr-2" />
-                    Message
-                  </Button>
-                </div>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-4">
-                  <div className="flex items-center">
-                    <svg
-                      className="w-5 h-5 text-yellow-500 mr-1"
-                      viewBox="0 0 20 20"
-                      fill="currentColor">
-                      <path
-                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                    <span className="font-semibold">625</span>
-                    <span className="text-gray-600 ml-1">credits</span>
-                  </div>
-                  <div className="text-gray-600">|</div>
-                  <div>
-                    <span className="font-semibold">16</span>
-                    <span className="text-gray-600 ml-1">Level</span>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <div className="text-sm text-gray-600">856 / 1200 xp</div>
-                  <Progress value={71} className="w-32" />
-                  <div className="text-xs text-gray-500">56,032 xp total</div>
+                <div className={'ml-[300px]'}>
+                   <LevelIndicator level={34} currentXP={10} levelXP={30} totalXP={50} /> 
                 </div>
               </div>
             </div>
           </CardContent>
         </Card>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <Card>
             <CardHeader>
@@ -219,7 +190,7 @@ const ProfilePage = () => {
           </CardContent>
         </Card>
       </div>
-      <div className="fixed bottom-4 right-4 flex flex-col space-y-2">
+      {/* <div className="fixed bottom-4 right-4 flex flex-col space-y-2">
         <Button size="icon" className="rounded-full">
           <Search className="h-4 w-4" />
         </Button>
@@ -232,7 +203,7 @@ const ProfilePage = () => {
         <Button size="icon" className="rounded-full">
           <Settings className="h-4 w-4" />
         </Button>
-      </div>
+      </div> */}
     </div>)
   );
 }

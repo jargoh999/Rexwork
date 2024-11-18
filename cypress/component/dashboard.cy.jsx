@@ -24,7 +24,6 @@ it('should navigate between pages', () => {
 it('should open the create new modal when New button is clicked', () => {
   // Click on the "New" button
   cy.get('button').contains('New').click();
-
   // Check if the modal is visible
   cy.get('absolute top-16 right-4 bg-grey shadow-lg rounded-lg p-4 w-54 z-50 mr-4').should('be.visible'); // Replace with the actual modal class
   // Close the modal

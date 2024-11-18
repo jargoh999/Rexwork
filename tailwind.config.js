@@ -7,6 +7,7 @@ export default {
   ],
   theme: {
   	extend: {
+
   		keyframes: {
   			fadeIn: {
   				'0%': {
@@ -41,6 +42,9 @@ export default {
   				}
   			}
   		},
+		  colors: {
+			customColor: 'rgba(65, 62, 84, 1)', // Your desired RGBA color
+		  },
   		animation: {
   			fadeIn: 'fadeIn 0.5s ease-in-out',
   			spinSlow: 'spinSlow 10s linear infinite',

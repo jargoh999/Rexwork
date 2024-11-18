@@ -48,15 +48,15 @@ const MessagingPopup = ({ triggerButton }) => {
                 )}
                 <div
                   className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div
-                    className={`max-w-[70%] ${message.sender === 'user' ? 'bg-gray-200' : 'bg-purple-500 text-white'} rounded-lg p-3`}>
+                <div
+                    className={`max-w-[70%] ${message.sender === 'user' ? 'bg-gray-200' : 'bg-green-500 text-white'} rounded-lg p-3`}>
                     <p>{message.content}</p>
                     <p className="text-xs mt-1 opacity-70">{message.timestamp}</p>
-                  </div>
+                </div>
                 </div>
               </React.Fragment>
             ))}
-          </div>
+      </div>
         </ScrollArea>
         <form onSubmit={handleSendMessage} className="flex items-center mt-4">
           <Input
@@ -64,7 +64,7 @@ const MessagingPopup = ({ triggerButton }) => {
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             className="flex-grow" />
-          <Button type="submit" size="icon" className="ml-2">
+          <Button type="submit" size="icon" className="ml-2 bg-green-500">
             <Send className="h-4 w-4"/>
           </Button>
         </form>
